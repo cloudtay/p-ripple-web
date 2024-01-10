@@ -125,7 +125,7 @@ class SessionManager
                 if (!$session instanceof Session) {
                     unlink($sessionFile);
                     return new Session($key, $this);
-                } elseif ($session->expire > 0 && $session->startTime + $session->expire > time()) {
+                } elseif ($session->expire > 0 && $session->startTime + $session->expire < time()) {
                     unlink($sessionFile);
                     return new Session($key, $this);
                 }

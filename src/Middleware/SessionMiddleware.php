@@ -6,7 +6,7 @@ use Cclilshy\PRippleHttpService\Request;
 use Cclilshy\PRippleWeb\Std\MiddlewareStd;
 use Cclilshy\PRippleWeb\WebApplication;
 use Generator;
-use Illuminate\Support\Facades\Session;
+use Cclilshy\PRippleWeb\Session\Session;
 use Throwable;
 
 class SessionMiddleware implements MiddlewareStd
@@ -32,6 +32,7 @@ class SessionMiddleware implements MiddlewareStd
         }
         $session = $webApplication->sessionManager->buildSession($sessionID);
         $request->inject(Session::class, $session);
-        yield true;
+        $request->defer(fn() => $session->save());
+        yield;
     }
 }

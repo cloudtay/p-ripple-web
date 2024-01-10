@@ -1,5 +1,6 @@
 {
   "name": "cclilshy/p-ripple-web",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Cclilshy\\PRippleWeb\\": "src/"
